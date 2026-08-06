@@ -4,27 +4,20 @@ on: [push, workflow_dispatch]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Install Dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y build-essential clang ldid dpkg fakeroot git perl xz-utils curl
-
-      - name: Setup Theos & SDK
+      - name: Setup Theos
         run: |
           git clone --recursive https://github.com/theos/theos.git $HOME/theos
-          git clone --depth=1 https://github.com/theos/sdks.git $HOME/theos/sdks/
-        
+
       - name: Build Package
         run: |
           export THEOS=$HOME/theos
-          export PATH=$THEOS/bin:$PATH
           make package
-          
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
