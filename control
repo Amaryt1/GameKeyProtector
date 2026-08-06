@@ -1,0 +1,8 @@
+Package: com.amaryt.gamekeyprotector
+Name: GameKeyProtector
+Depends: mobilesubstrate
+Version: 1.0.0
+Architecture: iphoneos-arm
+Maintainer: AMARYT 
+Author: amaryt
+Section: Tweaks
